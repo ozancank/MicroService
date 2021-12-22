@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "SzN4uy6NzSUSwjow3MsCzjhubY9mQ9sb0twKa1IlgwZCMFWP86tfBEakiLcsjc7epke0/xzkRg+Dd+bMnidyxQ==",
+  "dgSpecHash": "tTdP8laxPWRPPypLMmyJTTgzHZ/uLPROjvbEiJ1KEQmuF2/9FctEOnd1uwp+h2MrZOfz5qjj1BvRSFRs3Juagw==",
   "success": true,
   "projectFilePath": "D:\\MicroService\\src\\E-SourcingMicroService\\ESourcing.Products\\ESourcing.Products.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PROJE\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
     "C:\\Users\\PROJE\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\PROJE\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\PROJE\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.14.0\\microsoft.visualstudio.azure.containers.tools.targets.1.14.0.nupkg.sha512",
     "C:\\Users\\PROJE\\.nuget\\packages\\mongodb.bson\\2.14.1\\mongodb.bson.2.14.1.nupkg.sha512",
     "C:\\Users\\PROJE\\.nuget\\packages\\mongodb.driver\\2.14.1\\mongodb.driver.2.14.1.nupkg.sha512",
     "C:\\Users\\PROJE\\.nuget\\packages\\mongodb.driver.core\\2.14.1\\mongodb.driver.core.2.14.1.nupkg.sha512",
