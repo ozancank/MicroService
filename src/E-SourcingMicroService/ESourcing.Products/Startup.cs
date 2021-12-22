@@ -1,5 +1,7 @@
 using ESourcing.Products.Data;
 using ESourcing.Products.Data.Interfaces;
+using ESourcing.Products.Repositories;
+using ESourcing.Products.Repositories.Interfaces;
 using ESourcing.Products.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +30,7 @@ namespace ESourcing.Products
             services.AddSingleton<IProductDatabaseSettings>(sp => sp.GetRequiredService<IOptions<ProductDatabaseSettings>>().Value);
 
             services.AddTransient<IProductContext, ProductContext>();
+            services.AddTransient<IProductRepository, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
