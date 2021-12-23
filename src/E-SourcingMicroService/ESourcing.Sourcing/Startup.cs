@@ -29,14 +29,22 @@ namespace ESourcing.Sourcing
             services.Configure<SourcingDatabaseSettings>(Configuration.GetSection(nameof(SourcingDatabaseSettings)));
             services.AddSingleton<ISourcingDatabaseSettings>(sp => sp.GetRequiredService<IOptions<SourcingDatabaseSettings>>().Value);
 
+            #region Project Dependencies
+
             services.AddTransient<ISourcingContext, SourcingContext>();
             services.AddTransient<IAuctionRepository, AuctionRepository>();
             services.AddTransient<IBidRepository, BidRepository>();
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ESourcing.Sourcing", Version = "v1" });
-            });
+            #endregion Project Dependencies
+
+            #region Swagger Dependencies
+
+            services.AddSwaggerGen(s =>
+          {
+              s.SwaggerDoc("v1", new OpenApiInfo { Title = "ESourcing.Sourcing", Version = "v1" });
+          });
+
+            #endregion Swagger Dependencies
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,7 +53,7 @@ namespace ESourcing.Sourcing
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ESourcing.Sourcing v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sourcing API V1"));
             }
 
             app.UseRouting();

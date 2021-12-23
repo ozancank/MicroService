@@ -45,10 +45,24 @@ namespace ESourcing.Sourcing.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(Auction), (int)HttpStatusCode.Created)]
-        public async Task<ActionResult<Auction>> CreateAuctions([FromBody] Auction auction)
+        public async Task<ActionResult<Auction>> CreateAuction([FromBody] Auction auction)
         {
             await _auctionRepository.Create(auction);
             return CreatedAtRoute("GetAuction", new { id = auction.Id }, auction);
+        }
+
+        [HttpPut]
+        [ProducesResponseType(typeof(Auction), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Auction>> UpdateAuction([FromBody] Auction auction)
+        {
+            return Ok(await _auctionRepository.Update(auction));
+        }
+
+        [HttpDelete("{id:length(24)}")]
+        [ProducesResponseType(typeof(Auction), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Auction>> DeleteAuctionById(string id)
+        {
+            return Ok(await _auctionRepository.Delete(id));
         }
     }
 }
