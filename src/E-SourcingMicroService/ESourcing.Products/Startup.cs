@@ -40,7 +40,6 @@ namespace ESourcing.Products
 
             #region Swagger Dependencies
 
-            services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {
@@ -52,6 +51,11 @@ namespace ESourcing.Products
             });
 
             #endregion Swagger Dependencies
+
+            services.AddControllers();
+            services.AddCors(options =>
+                options.AddDefaultPolicy(builder =>
+                builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -63,9 +67,9 @@ namespace ESourcing.Products
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ESourcing.Products v1"));
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

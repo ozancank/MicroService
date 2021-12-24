@@ -24,7 +24,6 @@ namespace ESourcing.Sourcing
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
 
             services.Configure<SourcingDatabaseSettings>(Configuration.GetSection(nameof(SourcingDatabaseSettings)));
             services.AddSingleton<ISourcingDatabaseSettings>(sp => sp.GetRequiredService<IOptions<SourcingDatabaseSettings>>().Value);
@@ -45,6 +44,11 @@ namespace ESourcing.Sourcing
           });
 
             #endregion Swagger Dependencies
+            
+            services.AddControllers();
+            services.AddCors(options =>
+                options.AddDefaultPolicy(builder =>
+                builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -57,6 +61,8 @@ namespace ESourcing.Sourcing
             }
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
