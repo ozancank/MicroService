@@ -14,7 +14,7 @@ services:
     container_name: esourcingproducts
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ProductDatabaseSettings:ConnectionStrings=mongodb://sourcingdb:27017"
+      - "ProductDatabaseSettings:ConnectionString=mongodb://sourcingdb:27017"
     depends_on:
       - sourcingdb
     volumes:
@@ -27,7 +27,7 @@ services:
     container_name: esourcingsourcing
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "SourcingDatabaseSettings:ConnectionStrings=mongodb://sourcingdb:27017"
+      - "SourcingDatabaseSettings:ConnectionString=mongodb://sourcingdb:27017"
     depends_on:
       - sourcingdb
     volumes:
