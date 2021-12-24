@@ -4,7 +4,7 @@ services:
   sourcingdb:
     image: mongo
 
-  rabitmq:
+  rabbitmq:
     image: rabbitmq:3-management
 
   esourcing.products:
