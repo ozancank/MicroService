@@ -16,7 +16,7 @@ namespace ESourcing.Order.Extensions
                 {
                     var orderContext = scope.ServiceProvider.GetRequiredService<OrderContext>();
 
-                    if (orderContext.Database.ProviderName != "Microsoft.EntityFramework.InMemory")
+                    if (orderContext.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
                     {
                         orderContext.Database.Migrate();
                     }
