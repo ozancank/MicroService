@@ -6,8 +6,7 @@ namespace ESourcing.Infrastructure.Data
 {
     public class WebAppContext : IdentityDbContext<AppUser>
     {
-        public WebAppContext(DbContextOptions<WebAppContext> options)
-            : base(options)
+        public WebAppContext(DbContextOptions<WebAppContext> options) : base(options)
         {
         }
 
