@@ -13,9 +13,13 @@ namespace Ordering.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<OrderContext>(opt => opt.UseInMemoryDatabase(databaseName: "InMemoryDb"),
-                                                ServiceLifetime.Singleton,
-                                                ServiceLifetime.Singleton);
+            //services.AddDbContext<OrderContext>(opt => opt.UseInMemoryDatabase(databaseName: "InMemoryDb"),
+            //                                    ServiceLifetime.Singleton,
+            //                                    ServiceLifetime.Singleton);
+
+            services.AddDbContext<OrderContext>(opt => opt.UseSqlServer(
+                configuration.GetConnectionString("OrderConnection"),
+                b => b.MigrationsAssembly(typeof(OrderContext).Assembly.FullName)), ServiceLifetime.Singleton);
 
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IOrderRepository, OrderRepository>();
