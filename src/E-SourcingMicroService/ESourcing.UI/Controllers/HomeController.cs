@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ESourcing.UI.ViewModel;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ESourcing.UI.Controllers
 {
@@ -10,6 +11,23 @@ namespace ESourcing.UI.Controllers
         }
 
         public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginViewModel loginModel)
+        {
+            return View();
+        }
+
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Signup(AppUserViewModel signupModel)
         {
             return View();
         }
