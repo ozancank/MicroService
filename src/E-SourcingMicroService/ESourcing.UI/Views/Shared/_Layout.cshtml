@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@*@inject SignInManager<AppUser> SignInManager
-@inject UserManager<AppUser> UserManager*@
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,15 +52,15 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <div class="sidebar">
 
-               <nav class="mt-2">
-                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                     @*   @if (SignInManager.IsSignedIn(User))
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
                                 <a class="nav-item nav-link">
                                     <img src="~/dist/img/avatar.png" class="img-circle elevation-2" alt="User Image" style="width:40px;">
                                     <p>
-                                        @*Welcome To " @UserManager.GetUserName(User) "
+                                        Welcome To " @UserManager.GetUserName(User) "
                                     </p>
                                 </a>
                             </li>
@@ -98,7 +98,7 @@
                             </li>
                         }
                         else
-                        {*@
+                        {
                             <li class="nav-item">
                                 <a class="nav-item nav-link" asp-controller="Home" asp-action="SignUp">
                                     <i class="nav-icon far fa-user"></i>
@@ -115,7 +115,7 @@
                                     </p>
                                 </a>
                             </li>
-                       @* }*@
+                        }
                     </ul>
                 </nav>
             </div>
