@@ -1,5 +1,6 @@
 using ESourcing.Sourcing.Data;
 using ESourcing.Sourcing.Data.Interface;
+using ESourcing.Sourcing.Hubs;
 using ESourcing.Sourcing.Repositories;
 using ESourcing.Sourcing.Repositories.Interfaces;
 using ESourcing.Sourcing.Settings;
@@ -89,9 +90,13 @@ namespace ESourcing.Sourcing
             #endregion EventBus
 
             services.AddControllers();
-            services.AddCors(options =>
-                options.AddDefaultPolicy(builder =>
-                builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+            services.AddCors(o =>
+                o.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("https://localhost:5101", "http://localhost:5100");
+                }));
+
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -105,12 +110,13 @@ namespace ESourcing.Sourcing
 
             app.UseRouting();
 
-            app.UseCors();
-
             app.UseAuthorization();
+
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<AuctionHub>("/auctionHub");
                 endpoints.MapControllers();
             });
         }

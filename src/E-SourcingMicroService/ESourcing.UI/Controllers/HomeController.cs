@@ -68,6 +68,7 @@ namespace ESourcing.UI.Controllers
                 usr.LastName = signupModel.LastName;
                 usr.PhoneNumber = signupModel.PhoneNumber;
                 usr.UserName = signupModel.UserName;
+                usr.EmailConfirmed = true;
                 if (signupModel.UserSelectTypeId == 1)
                 {
                     usr.IsBuyer = true;

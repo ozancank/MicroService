@@ -31,6 +31,6 @@ namespace ESourcing.Sourcing.Entities
     {
         Active = 0,
         Closed = 1,
-        Passice = 2
+        Passive = 2
     }
 }

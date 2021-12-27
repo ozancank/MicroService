@@ -4,6 +4,7 @@ using ESourcing.Core.Repositories.Base;
 using ESourcing.Infrastructure.Data;
 using ESourcing.Infrastructure.Repository;
 using ESourcing.Infrastructure.Repository.Base;
+using ESourcing.UI.Clients;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -34,15 +35,11 @@ namespace ESourcing.UI
                 opt.Password.RequireLowercase = false;
                 opt.Password.RequireUppercase = false;
                 opt.Password.RequireDigit = false;
-            }).AddDefaultTokenProviders().AddEntityFrameworkStores<WebAppContext>();
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<WebAppContext>();            
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddMvc();
             services.AddRazorPages();
-            services.AddSession(opt =>
-            {
-                opt.IdleTimeout = TimeSpan.FromMinutes(20);
-            });
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
@@ -62,6 +59,12 @@ namespace ESourcing.UI
                 options.LoginPath = $"/Home/Login";
                 options.LogoutPath = $"/Home/Logout";
             });
+
+            services.AddHttpClient();
+
+            services.AddHttpClient<ProductClient>();
+            services.AddHttpClient<AuctionClient>();
+            services.AddHttpClient<BidClient>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -79,7 +82,7 @@ namespace ESourcing.UI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
+            app.UseRouting();            
 
             app.UseAuthentication();
             app.UseAuthorization();

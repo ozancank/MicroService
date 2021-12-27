@@ -22,7 +22,7 @@ namespace ESourcing.UI.Clients
 
         public async Task<Result<List<ProductViewModel>>> GetProducts()
         {
-            var response = await _client.GetAsync("/Product");
+            var response = await _client.GetAsync("/api/v1/Product");
             if (response.IsSuccessStatusCode)
             {
                 var responseData = await response.Content.ReadAsStringAsync();
