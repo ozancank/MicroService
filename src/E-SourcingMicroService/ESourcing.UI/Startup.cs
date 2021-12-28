@@ -35,11 +35,15 @@ namespace ESourcing.UI
                 opt.Password.RequireLowercase = false;
                 opt.Password.RequireUppercase = false;
                 opt.Password.RequireDigit = false;
-            }).AddDefaultTokenProviders().AddEntityFrameworkStores<WebAppContext>();            
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<WebAppContext>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddMvc();
             services.AddRazorPages();
+            services.AddSession(opt =>
+            {
+                opt.IdleTimeout = TimeSpan.FromMinutes(20);
+            });
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
@@ -69,6 +73,7 @@ namespace ESourcing.UI
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSession();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -82,7 +87,7 @@ namespace ESourcing.UI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();            
+            app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();

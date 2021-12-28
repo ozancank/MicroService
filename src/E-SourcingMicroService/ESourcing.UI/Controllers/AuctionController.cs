@@ -71,8 +71,8 @@ namespace ESourcing.UI.Controllers
             model.AuctionId = auctionResponse.Data.Id;
             model.ProductId = auctionResponse.Data.ProductId;
             model.Bids = bidsResponse.Data;
-            ////var isAdmin = HttpContext.Session.GetString("IsAdmin");
-            //model.IsAdmin = Convert.ToBoolean(isAdmin);
+            var isAdmin = HttpContext.Session.GetString("IsAdmin");
+            model.IsAdmin = Convert.ToBoolean(isAdmin);
 
             return View(model);
         }
